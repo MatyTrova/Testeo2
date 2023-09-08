@@ -168,7 +168,7 @@ with colA :
         else:
             pass  
     if aux == True:
-        time.sleep(4)
+        time.sleep(2)
         # Nombre del archivo PDF
         pdf_filename = "Resumen precio sugerido.pdf"
 
