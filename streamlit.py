@@ -358,7 +358,7 @@ if aux == True :
     st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
     st.write(f"+ IVA (21%): **${lista_variables[6]}**")
     st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[7]}**")
-    st.write(f"+ II.BB (2,5%): **${lista_variables[8]}**")
+    st.write(f"+ II.BB (2,5%) - {provincia_seleccionada}: **${lista_variables[8]}**")
     st.write(f"+ IVA RG2408 (1,5%): **${lista_variables[9]}**")
     
 
