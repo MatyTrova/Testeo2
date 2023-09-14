@@ -45,6 +45,7 @@ st.write("---")
 
 monto_input = st.text_input("Precio contado", value="$")
 monto_credito = monto_input.strip()
+monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
 
 if monto_credito == "" or monto_credito == "$" or monto_credito == " " : 
     aux3 = False 
@@ -53,7 +54,6 @@ elif monto_credito == "0":
     st.write("prueba2")
 else:
     try:
-        monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
         monto_credito = float(monto_credito)
         aux3= True
     except ValueError:
