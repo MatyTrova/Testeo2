@@ -206,7 +206,6 @@ with colA :
             else:
                # Utiliza st.markdown para cambiar el color del texto
                 st.markdown("<span style='color: red;'>Provincia no válida.</span>", unsafe_allow_html=True)
-                st.markdown("<span style='color: red;'>Vamo el rojo!.</span>", unsafe_allow_html=True)
         else:
             pass  
     if aux == True:
