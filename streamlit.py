@@ -49,6 +49,7 @@ monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",")
 
 # listado de provincias
 provincias = [
+    "Seleccione una provincia",
     "Buenos Aires",
     "Ciudad Autónoma de Buenos Aires",
     "Catamarca",
