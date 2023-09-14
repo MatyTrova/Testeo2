@@ -48,7 +48,7 @@ monto_credito = monto_input.strip()
 
 if monto_credito == "" or monto_credito == "$" or monto_credito == " " : 
     aux3 = False 
-if monto_credito == "0":
+elif monto_credito == "0":
     aux3= False
     st.write("prueba2")
 else:
