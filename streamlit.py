@@ -90,6 +90,11 @@ st.write("---")
 
 provincia_seleccionada = st.selectbox("# Seleccione la provincia",provincias)  
 
+if provincia_seleccionada == "Seleccione una provincia":
+    aux_seleccionar_provincia = False
+else:
+    aux_seleccionar_provincia = True
+
 st.write("---")
 # Inputo de la cuota
 programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
@@ -119,85 +124,87 @@ with colA :
     #    aux = True
     if st.button("Calcular"):
         if aux3 == True :
-            aux = True
-            tasas_interes = tasas_cft[programa_seleccionado]
-
-                # Arancel de la tarjeta de credito
-            arancel_tarjeta = 0.018
-
-                        # Calculamos la tasa del probrama
-            base_tasa_programa = monto_credito * tasas_interes
-
-                        # Calculamos la base 2
-            base_arancel = monto_credito * arancel_tarjeta
-
-                        # Iva arancel
-            iva_arancel = 0.21 * base_arancel
-
-                        # Iva del programa
-            iva_programa = 0.105 * base_tasa_programa
-
-                        # ingreso bruto
-            iibb = 0.025 * base_tasa_programa
-
-                        # otro iva
-            iva3 = 0.015 * base_tasa_programa
-
-                        # total de descuentos
-            total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
-
-                        # neto_percibido
-            neto_percibido = monto_credito - total_descuentos_1
-
-                        # descuento en %
-            total_descuentos_2 = (total_descuentos_1 / monto_credito )
-
-                        # monto a cobrar
-            monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-
-            
-
-            # vuelvo a definir las variables según el monto a cobrar
-            # linea divisoria 1
-            base_tasa_programa = monto_a_cobrar * tasas_interes
-
-                        # Calculamos la base 2
-            base_arancel = monto_a_cobrar * arancel_tarjeta
-
-                        # Iva arancel
-            iva_arancel = 0.21 * base_arancel
-
-                        # Iva del programa
-            iva_programa = 0.105 * base_tasa_programa
-
-                        # ingreso bruto
-            iibb = 0.025 * base_tasa_programa
-
-                        # otro iva
-            iva3 = 0.015 * base_tasa_programa
-
-            # reintegro a percibir
-            reintegro = iva_arancel + iva_programa + iva3
-            # linea divisoria 2
-
-            #descuentos %
-            total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
-
-            total_descuentos_en_porcentaje_2 = (total_descuentos_1 / monto_credito ) * 100
-            
-            total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
-
-            neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
-
-            # Creamos lista de variables
-            lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
-
-            # iteramos para el formato
-            for i in range (len(lista_variables)) :
-                lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
-                lista_variables[i] = lista_variables[i].replace(".",",")
-                lista_variables[i] = lista_variables[i].replace(" ",".")
-
+            if aux_seleccionar_provincia == True:
+                aux = True
+                tasas_interes = tasas_cft[programa_seleccionado]
+    
+                    # Arancel de la tarjeta de credito
+                arancel_tarjeta = 0.018
+    
+                            # Calculamos la tasa del probrama
+                base_tasa_programa = monto_credito * tasas_interes
+    
+                            # Calculamos la base 2
+                base_arancel = monto_credito * arancel_tarjeta
+    
+                            # Iva arancel
+                iva_arancel = 0.21 * base_arancel
+    
+                            # Iva del programa
+                iva_programa = 0.105 * base_tasa_programa
+    
+                            # ingreso bruto
+                iibb = 0.025 * base_tasa_programa
+    
+                            # otro iva
+                iva3 = 0.015 * base_tasa_programa
+    
+                            # total de descuentos
+                total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
+    
+                            # neto_percibido
+                neto_percibido = monto_credito - total_descuentos_1
+    
+                            # descuento en %
+                total_descuentos_2 = (total_descuentos_1 / monto_credito )
+    
+                            # monto a cobrar
+                monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
+    
+                
+    
+                # vuelvo a definir las variables según el monto a cobrar
+                # linea divisoria 1
+                base_tasa_programa = monto_a_cobrar * tasas_interes
+    
+                            # Calculamos la base 2
+                base_arancel = monto_a_cobrar * arancel_tarjeta
+    
+                            # Iva arancel
+                iva_arancel = 0.21 * base_arancel
+    
+                            # Iva del programa
+                iva_programa = 0.105 * base_tasa_programa
+    
+                            # ingreso bruto
+                iibb = 0.025 * base_tasa_programa
+    
+                            # otro iva
+                iva3 = 0.015 * base_tasa_programa
+    
+                # reintegro a percibir
+                reintegro = iva_arancel + iva_programa + iva3
+                # linea divisoria 2
+    
+                #descuentos %
+                total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
+    
+                total_descuentos_en_porcentaje_2 = (total_descuentos_1 / monto_credito ) * 100
+                
+                total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
+    
+                neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
+    
+                # Creamos lista de variables
+                lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
+    
+                # iteramos para el formato
+                for i in range (len(lista_variables)) :
+                    lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
+                    lista_variables[i] = lista_variables[i].replace(".",",")
+                    lista_variables[i] = lista_variables[i].replace(" ",".")
+            else:
+                st.text("seleccione una provincia porfavor")
         else:
             pass  
     if aux == True:
