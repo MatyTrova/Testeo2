@@ -55,7 +55,7 @@ elif monto_credito == "0":
 else:
     try:
         monto_credito = float(monto_credito)
-        aux3= True
+        aux3 = True
     except ValueError:
         aux3 = False        
         st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
