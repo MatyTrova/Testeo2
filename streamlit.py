@@ -204,21 +204,9 @@ with colA :
                     lista_variables[i] = lista_variables[i].replace(".",",")
                     lista_variables[i] = lista_variables[i].replace(" ",".")
             else:
-                # Define un estilo CSS personalizado para cambiar el color del texto
-                custom_css = """
-                <style>
-                    .my-text {
-                        color: red;
-                    }
-                </style>
-                """
-                
-                # Aplica el estilo CSS personalizado usando st.markdown
-                st.markdown(custom_css, unsafe_allow_html=True)
-                
-                # Agrega un st.write con la clase CSS personalizada
-                st.write("Provincia no válida", key="my-text")
-                st.write("Vamo el rojo!.", key="my-text")
+               # Utiliza st.markdown para cambiar el color del texto
+                st.markdown("<span style='color: red;'>Provincia no válida.</span>", unsafe_allow_html=True)
+                st.markdown("<span style='color: red;'>Vamo el rojo!.</span>", unsafe_allow_html=True)
         else:
             pass  
     if aux == True:
