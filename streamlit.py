@@ -47,6 +47,35 @@ monto_input = st.text_input("Precio contado", value="$")
 monto_credito = monto_input.strip()
 monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
 
+# listado de provincias
+provincias = [
+    "Buenos Aires",
+    "Ciudad Autónoma de Buenos Aires",
+    "Catamarca",
+    "Chaco",
+    "Chubut",
+    "Córdoba",
+    "Corrientes",
+    "Entre Ríos",
+    "Formosa",
+    "Jujuy",
+    "La Pampa",
+    "La Rioja",
+    "Mendoza",
+    "Misiones",
+    "Neuquén",
+    "Río Negro",
+    "Salta",
+    "San Juan",
+    "San Luis",
+    "Santa Cruz",
+    "Santa Fe",
+    "Santiago del Estero",
+    "Tierra del Fuego",
+    "Tucumán"
+]
+
+
 if monto_credito == "" or monto_credito == "$" or monto_credito == " " : 
     aux3 = False 
 else:
@@ -56,6 +85,9 @@ else:
     except ValueError:
         st.text("Coloque un número válido porfavor")
         aux3 = False         
+st.write("---")
+
+provincia_seleccionada = st.selectbox("Seleccione la provincia",provincias)  
 
 st.write("---")
 # Inputo de la cuota
