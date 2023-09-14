@@ -51,7 +51,7 @@ if monto_credito == "" or monto_credito == "$" or monto_credito == " " :
     aux3 = False 
 elif monto_credito == "0":
     aux3= False
-    st.write("prueba2")
+    st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
 else:
     try:
         monto_credito = float(monto_credito)
