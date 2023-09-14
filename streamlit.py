@@ -58,7 +58,6 @@ else:
         aux3= True
     except ValueError:
         aux3 = False        
-        st.write("prueba1")
         st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
 st.write("---")
 
