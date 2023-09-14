@@ -45,7 +45,23 @@ st.write("---")
 
 monto_input = st.text_input("Precio contado", value="$")
 monto_credito = monto_input.strip()
-monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
+
+if monto_credito == "" or monto_credito == "$" or monto_credito == " " : 
+    aux3 = False 
+if monto_credito == "0":
+    aux3= False
+    st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
+else:
+    try:
+        monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
+        monto_credito = float(monto_credito)
+        aux3= True
+    except ValueError:
+        aux3 = False         
+        st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
+st.write("---")
+
+# Seleccionar provincias
 
 # listado de provincias
 provincias = [
@@ -76,23 +92,7 @@ provincias = [
     "Tucumán"
 ]
 
-
-if monto_credito == "" or monto_credito == "$" or monto_credito == " " : 
-    aux3 = False 
-if monto_credito == "0":
-    aux3= False
-    st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
-else:
-    try:
-        monto_credito = float(monto_credito)
-        aux3= True
-    except ValueError:
-        aux3 = False         
-        st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
-st.write("---")
-
 provincia_seleccionada = st.selectbox("# Seleccione la provincia",provincias)  
-
 if provincia_seleccionada == "Seleccione una provincia":
     aux_seleccionar_provincia = False
 else:
