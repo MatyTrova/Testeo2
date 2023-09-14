@@ -204,7 +204,8 @@ with colA :
                     lista_variables[i] = lista_variables[i].replace(".",",")
                     lista_variables[i] = lista_variables[i].replace(" ",".")
             else:
-                st.text("seleccione una provincia porfavor")
+                st.text("seleccione una provincia")
+                st.text("porfavor")
         else:
             pass  
     if aux == True:
