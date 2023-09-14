@@ -88,7 +88,7 @@ else:
         aux3 = False         
 st.write("---")
 
-provincia_seleccionada = st.selectbox("Seleccione la provincia",provincias)  
+provincia_seleccionada = st.selectbox("# Seleccione la provincia",provincias)  
 
 st.write("---")
 # Inputo de la cuota
