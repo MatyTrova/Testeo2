@@ -12,9 +12,9 @@ import io
 # FUNCION PARA TOMAR DATOS
     
     # Configura el repositorio de GitHub y el archivo CSV
-github_token = st.secrets["TOKEN"]
-repo_name = 'MatyTrova/Testeo2'
-file_path = 'Datos/datos.csv'  # Provide the correct relative path to the file within the repository
+github_token = st.secrets["TOKEN"] # HACERLO CON ST.SECRETS
+repo_name = 'MatyTrova/Datos_privado' #HACERLO CON ST.SECRETS
+file_path = 'datos.csv' # HACERLO CON ST.SECRETS   Provide the correct relative path to the file within the repository # Provide the correct relative path to the file within the repository
     
 def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion):
         g = Github(github_token)
