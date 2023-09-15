@@ -93,11 +93,60 @@ provincias = [
 ]
 
 provincia_seleccionada = st.selectbox("# Seleccione la provincia",provincias)  
+
 if provincia_seleccionada == "Seleccione una provincia":
     aux_seleccionar_provincia = False
 else:
     aux_seleccionar_provincia = True
-
+    
+if provincia_seleccionada == "Buenos Aires":
+    porcentaje_iibb = 0.05
+elif provincia_seleccionada == "Ciudad Autónoma de Buenos Aires":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Catamarca":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Chaco":
+    porcentaje_iibb = 0.035
+elif provincia_seleccionada == "Chubut":
+    porcentaje_iibb = 0.05
+elif provincia_seleccionada == "Córdoba":
+    porcentaje_iibb = 0.0475
+elif provincia_seleccionada == "Corrientes":
+    porcentaje_iibb = 0.029
+elif provincia_seleccionada == "Entre Ríos":
+    porcentaje_iibb = 0.035
+elif provincia_seleccionada == "Formosa":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Jujuy":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "La Pampa":
+    porcentaje_iibb = 0.028
+elif provincia_seleccionada == "La Rioja":
+    porcentaje_iibb = 0.025
+elif provincia_seleccionada == "Mendoza":
+    porcentaje_iibb = 0.0275
+elif provincia_seleccionada == "Misiones":
+    porcentaje_iibb = 0.025
+elif provincia_seleccionada == "Neuquén":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Río Negro":
+    porcentaje_iibb = 0.033
+elif provincia_seleccionada == "Salta":
+    porcentaje_iibb = 0.033
+elif provincia_seleccionada == "San Juan":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "San Luis":
+    porcentaje_iibb = 0.023
+elif provincia_seleccionada == "Santa Cruz":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Santa Fe":
+    porcentaje_iibb = 0.045
+elif provincia_seleccionada == "Santiago del Estero":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Tierra del Fuego":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Tucumán":
+    porcentaje_iibb = 0.029
 st.write("---")
 # Inputo de la cuota
 programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
@@ -147,7 +196,7 @@ with colA :
                 iva_programa = 0.105 * base_tasa_programa
     
                             # ingreso bruto
-                iibb = 0.025 * base_tasa_programa
+                iibb = porcentaje_iibb * base_tasa_programa
     
                             # otro iva
                 iva3 = 0.015 * base_tasa_programa
@@ -297,7 +346,7 @@ with colA :
         c.setFont("Helvetica", 12)
         c.drawString(200, 360, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
         c.drawString(200, 340, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
-        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (2,5%): ${lista_variables[8]}")
+        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb}): ${lista_variables[8]}")
         c.drawString(200, 300, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
         c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
         c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
@@ -361,7 +410,7 @@ if aux == True :
     st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
     st.write(f"+ IVA (21%): **${lista_variables[6]}**")
     st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[7]}**")
-    st.write(f"+ II.BB para {provincia_seleccionada} (2,5%): **${lista_variables[8]}**")
+    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb}): **${lista_variables[8]}**")
     st.write(f"+ IVA RG2408 (1,5%): **${lista_variables[9]}**")
     
 
