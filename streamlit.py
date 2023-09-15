@@ -7,6 +7,7 @@ import datetime
 import pytz
 import time
 import csv
+import pandas as pd
 
 # Configuramos la página
 st.set_page_config(
