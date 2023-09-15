@@ -434,11 +434,12 @@ if aux == True:
             writer.writerow([fecha, hora ,Provincia,Monto,Programa,Tipodeinscripción,DescargóPDF])
 
     if descargo_pdf == True:
+        time.sleep(2)
         descargo_pdf = "Si"
     else:
         descargo_pdf = "No"
     # ACÁ GUARDAMOS LOS DATOS
-    time.sleep(2)
+    
     guardar_datos(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf)
 
 
@@ -543,5 +544,5 @@ st.text("SECCIÓN DE PRUEBA PARA VER DATOS RECOPILADOS")
 
 df = pd.read_csv("Datos/datos.csv")
 st.dataframe(df)
-pd.to_csv("Datos/datos_2.csv")
+df.to_csv("Datos/datos_2.csv")
 
