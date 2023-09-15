@@ -430,16 +430,16 @@ if aux == True:
     repo_name = 'MatyTrova/Testeo2'
     file_path = 'https://github.com/MatyTrova/Testeo2/blob/main/Datos/datos.csv'
     
-    def agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf):
+    def agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables ,lista_variables2,programa_seleccionado, tipo_inscripcion, descargo_pdf):
         g = Github(github_token)
         repo = g.get_repo(repo_name)
         contents = repo.get_contents(file_path)
         
         # Lee el archivo CSV y agrega nuevos datos
         df = pd.read_csv(contents.decoded_content)
-        df = df.append({'Fecha': fecha_actual, 'Hora': hora_actual, "Provincia": provincia_seleccionada, "Monto": lista_variables[0], "Precio Sugerido": lista_variables[1], "Programa": programa_seleccionado, "Tipo de inscripcion": tipo_inscripcion, "Descargo PDF":descargo_pdf }, ignore_index=True)
+        df = df.append({'Fecha': fecha_actual, 'Hora': hora_actual, "Provincia": provincia_seleccionada, "Monto": lista_variables, "Precio Sugerido": lista_variables, "Programa": programa_seleccionado, "Tipo de inscripcion": tipo_inscripcion, "Descargo PDF":descargo_pdf }, ignore_index=True)
 
-    agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf)
+    agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,lista_variables[1],programa_seleccionado, tipo_inscripcion, descargo_pdf)
 
 st.write("---")
 
