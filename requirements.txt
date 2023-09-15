@@ -2,3 +2,4 @@ streamlit
 reportlab
 csv
 pandas
+github
