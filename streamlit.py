@@ -438,6 +438,7 @@ if aux == True:
     else:
         descargo_pdf = "No"
     # ACÁ GUARDAMOS LOS DATOS
+    time.sleep(2)
     guardar_datos(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf)
 
 
