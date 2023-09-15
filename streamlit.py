@@ -361,8 +361,9 @@ with colA :
         c.save()
         pdf_buffer.seek(0)
         if st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf"):
-            st.text("descargó")
-
+            descargo_pdf = True
+        else:
+            descargo_pdf = False
 
 with colB:
     
@@ -418,6 +419,25 @@ if aux == True :
 
     if (tipo_inscripcion != "Monotributista"):
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
+
+# RECOPILACIÓN DE DATOS
+if aux == True:
+    # Crea o abre el archivo CSV
+    csv_file = 'Datos/datos_calculadora.csv'
+    
+    # Función para guardar datos en el CSV
+    def guardar_datos(fecha, hora ,Provincia,Monto,Programa,Tipodeinscripción,DescargóPDF):
+        with open(csv_file, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([fecha, hora ,Provincia,Monto,Programa,Tipodeinscripción,DescargóPDF])
+
+    if descargo_pdf = True
+        descargo_pdf = "Si"
+    else:
+        descargo_pdf = "No"
+    # ACÁ GUARDAMOS LOS DATOS
+    guardar_datos(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf)
+
 
 
 st.write("---")
