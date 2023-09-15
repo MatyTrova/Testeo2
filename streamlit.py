@@ -424,25 +424,52 @@ if aux == True :
 
 # RECOPILACIÓN DE DATOS
 if aux == True:
-    # Configura el repositorio de GitHub y el archivo CSV
-    github_token = st.secrets["TOKEN"]
-    repo_name = 'MatyTrova/Testeo2'
-    file_path = 'https://github.com/MatyTrova/Testeo2/blob/main/Datos/datos.csv'
+    import io
+    from github import Github
+    import pandas as pd
     
-    def agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables1,lista_variables2 ,programa_seleccionado, tipo_inscripcion, descargo_pdf):
+    # Configura el repositorio de GitHub y el archivo CSV
+    github_token = "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"
+    repo_name = 'MatyTrova/Testeo2'
+    file_path = 'Datos/datos.csv'  # Provide the correct relative path to the file within the repository
+    
+    def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion, descargo_pdf):
         g = Github(github_token)
         repo = g.get_repo(repo_name)
         contents = repo.get_contents(file_path)
         
-        # Lee el archivo CSV y agrega nuevos datos
-        df = pd.read_csv(contents.decoded_content)
-        df = df.append({'Fecha': fecha_actual, 'Hora': hora_actual, "Provincia": provincia_seleccionada, "Monto": lista_variables1, "Precio Sugerido": lista_variables2, "Programa": programa_seleccionado, "Tipo de inscripcion": tipo_inscripcion, "Descargo PDF":descargo_pdf }, ignore_index=True)
-    
-        guardar_datos(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,lista_variables[1],programa_seleccionado, tipo_inscripcion, descargo_pdf)
+        # Create a file-like object from the decoded content
+        content_bytes = contents.decoded_content
+        content_file = io.BytesIO(content_bytes)
         
-        # Guarda los datos actualizados en el archivo CSV
-        df.to_csv(contents.path, index=False)
-        st.dataframe(df)
+        # Read the CSV from the file-like object
+        df = pd.read_csv(content_file)
+        
+        # Create a DataFrame with the new data
+        new_data = pd.DataFrame({
+            'Fecha': [fecha_actual],
+            'Hora': [hora_actual],
+            'Provincia': [provincia_seleccionada],
+            'Monto': [lista_variables1],
+            'Precio Sugerido': [lista_variables2],
+            'Programa': [programa_seleccionado],
+            'Tipo de inscripcion': [tipo_inscripcion],
+            'Descargo PDF': [descargo_pdf]
+        })
+        
+        # Append the new DataFrame to the existing DataFrame
+        df = pd.concat([df, new_data], ignore_index=True)
+        
+        # Save the updated DataFrame back to the file-like object
+        content_file.seek(0)  # Reset the file position to the beginning
+        df.to_csv(content_file, index=False)
+        
+        # Update the file in the repository with the modified content
+        repo.update_file(contents.path, "Actualizado el archivo CSV", content_file.getvalue(), contents.sha)
+    
+    # Example usage:
+    agregar_datos_a_github("1", "2", "1", "2", "1", "2", "1", "2")
+
 
 
 st.write("---")
