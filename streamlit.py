@@ -423,13 +423,17 @@ if aux == True :
 
 # RECOPILACIÓN DE DATOS
 if aux == True:
-    @st.cache_data(ttl=600)
     def load_data(sheets_url):
         csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
         return pd.read_csv(csv_url)
     
     df = load_data(st.secrets["TOKEN"])
-    
+    st.text("SECCIÓN DE PRUEBA PARA VER DATOS RECOPILADOS")
+
+    # Muestra los datos desde GitHub
+        # Print results.
+    for row in df.itertuples():
+        st.write(f"{row.name} has a :{row.pet}:") 
 
 
 st.write("---")
@@ -528,10 +532,5 @@ with colder :
     st.write("")
 
 st.write("---")
-st.text("SECCIÓN DE PRUEBA PARA VER DATOS RECOPILADOS")
 
-# Muestra los datos desde GitHub
-    # Print results.
-for row in df.itertuples():
-    st.write(f"{row.name} has a :{row.pet}:")
 
