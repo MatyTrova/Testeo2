@@ -16,7 +16,7 @@ github_token = st.secrets["TOKEN"]
 repo_name = 'MatyTrova/Testeo2'
 file_path = 'Datos/datos.csv'  # Provide the correct relative path to the file within the repository
     
-def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion, descargo_pdf):
+def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion):
         g = Github(github_token)
         repo = g.get_repo(repo_name)
         contents = repo.get_contents(file_path)
@@ -37,7 +37,6 @@ def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, li
             'Precio Sugerido': [lista_variables2],
             'Programa': [programa_seleccionado],
             'Tipo de inscripcion': [tipo_inscripcion],
-            'Descargo PDF': [descargo_pdf]
         })
         
         # Append the new DataFrame to the existing DataFrame
@@ -406,11 +405,9 @@ with colA :
             # Guardar y cerrar el PDF
         c.save()
         pdf_buffer.seek(0)
-        if st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf"):
-            agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion, "Si")
-        else:
-            agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion, "No")
-
+        st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf"):
+        
+            
 with colB:
     
     custom_css = """
@@ -466,7 +463,8 @@ if aux == True :
     if (tipo_inscripcion != "Monotributista"):
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
-
+if aux == True:
+    agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
 
 
 st.write("---")
