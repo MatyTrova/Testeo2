@@ -229,7 +229,7 @@ with colA :
                 iva_programa = 0.105 * base_tasa_programa
     
                             # ingreso bruto
-                iibb = 0.025 * base_tasa_programa
+                iibb = porcentaje_iibb * base_tasa_programa
     
                             # otro iva
                 iva3 = 0.015 * base_tasa_programa
