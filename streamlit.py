@@ -543,4 +543,5 @@ st.text("SECCIÓN DE PRUEBA PARA VER DATOS RECOPILADOS")
 
 df = pd.read_csv("Datos/datos.csv")
 st.dataframe(df)
+pd.to_csv("Datos/datos_2.csv")
 
