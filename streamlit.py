@@ -432,7 +432,7 @@ if aux == True:
             writer = csv.writer(file)
             writer.writerow([fecha, hora ,Provincia,Monto,Programa,Tipodeinscripción,DescargóPDF])
 
-    if descargo_pdf = True
+    if descargo_pdf == True
         descargo_pdf = "Si"
     else:
         descargo_pdf = "No"
