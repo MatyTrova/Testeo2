@@ -466,11 +466,9 @@ if aux == True:
         
         # Update the file in the repository with the modified content
         repo.update_file(contents.path, "Actualizado el archivo CSV", content_file.getvalue(), contents.sha)
-        return df
-    
     
     # Example usage:
-    agregar_datos_a_github("1", "2", "1", "2", "1", "2", "1", "2")
+    agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion, descargo_pdf)
 
 
 
