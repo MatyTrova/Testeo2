@@ -346,7 +346,7 @@ with colA :
         c.setFont("Helvetica", 12)
         c.drawString(200, 360, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
         c.drawString(200, 340, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
-        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb}): ${lista_variables[8]}")
+        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb*100}): ${lista_variables[8]}")
         c.drawString(200, 300, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
         c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
         c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
@@ -410,7 +410,7 @@ if aux == True :
     st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
     st.write(f"+ IVA (21%): **${lista_variables[6]}**")
     st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[7]}**")
-    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb}): **${lista_variables[8]}**")
+    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb*100}): **${lista_variables[8]}**")
     st.write(f"+ IVA RG2408 (1,5%): **${lista_variables[9]}**")
     
 
