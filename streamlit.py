@@ -248,7 +248,7 @@ with colA :
                 neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
     
                 # Creamos lista de variables
-                lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2, porcentaje_iibb]
+                lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
     
                 # iteramos para el formato
                 for i in range (len(lista_variables)) :
@@ -337,6 +337,7 @@ with colA :
         c.drawString(200, 460, f"Neto a percibir: ${lista_variables[3]}")
 
         tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
+        porcentaje_iibb_str = str(porcentaje_iibb *100).replace(".",",")
         
         c.setFont("Helvetica", 12)
         c.drawString(100, 420, f"ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que ")
@@ -346,7 +347,7 @@ with colA :
         c.setFont("Helvetica", 12)
         c.drawString(200, 360, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
         c.drawString(200, 340, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
-        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb}%): ${lista_variables[8]}")
+        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb_str}%): ${lista_variables[8]}")
         c.drawString(200, 300, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
         c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
         c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
@@ -410,7 +411,7 @@ if aux == True :
     st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
     st.write(f"+ IVA (21%): **${lista_variables[6]}**")
     st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[7]}**")
-    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb}%): **${lista_variables[8]}**")
+    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb_str}%): **${lista_variables[8]}**")
     st.write(f"+ IVA RG2408 (1,5%): **${lista_variables[9]}**")
     
 
