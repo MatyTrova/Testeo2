@@ -535,3 +535,10 @@ with col_centro:
 
 with colder :
     st.write("")
+
+st.write("---")
+st.text("SECCIÓN DE PRUEBA PARA VER DATOS RECOPILADOS")
+
+df = pd.read_csv("Datos/datos.csv")
+st.dataframe(df)
+
