@@ -7,6 +7,7 @@ import datetime
 import pytz
 import time
 import pandas as pd
+from github import Github
 
 # Configuramos la página
 st.set_page_config(
@@ -423,16 +424,25 @@ if aux == True :
 
 # RECOPILACIÓN DE DATOS
 if aux == True:
-    def load_data(sheets_url):
-        csv_url = sheets_url.replace("/edit#gid=", "/export?format=csv&gid=")
-        return pd.read_csv(csv_url)
+    # Configura el repositorio de GitHub y el archivo CSV
+    github_token = st.secrets["TOKEN"]
+    repo_name = 'MatyTrova/Testeo2'
+    file_path = 'https://github.com/MatyTrova/Testeo2/blob/main/Datos/datos.csv'
     
-    df = load_data(st.secrets["TOKEN"])
-    st.text("SECCIÓN DE PRUEBA PARA VER DATOS RECOPILADOS")
-
-    # Muestra los datos desde GitHub
-        # Print results.
-    st.dataframe(df)
+    def agregar_datos_a_github((fecha_actual, hora_actual , provincia_seleccionada , lista_variables1,lista_variables2 ,programa_seleccionado, tipo_inscripcion, descargo_pdf):
+        g = Github(github_token)
+        repo = g.get_repo(repo_name)
+        contents = repo.get_contents(file_path)
+        
+        # Lee el archivo CSV y agrega nuevos datos
+        df = pd.read_csv(contents.decoded_content)
+        df = df.append({'Fecha': fecha_actual, 'Hora': hora_actual, "Provincia": provincia_seleccionada, "Monto": lista_variables1, "Precio Sugerido": lista_variables2, "Programa": programa_seleccionado, "Tipo de inscripcion": tipo_inscripcion, "Descargo PDF":descargo_pdf }, ignore_index=True)
+    
+        guardar_datos(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,lista_variables[1],programa_seleccionado, tipo_inscripcion, descargo_pdf)
+        
+        # Guarda los datos actualizados en el archivo CSV
+        df.to_csv(contents.path, index=False)
+        st.dataframe(df)
 
 
 st.write("---")
