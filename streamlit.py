@@ -424,7 +424,7 @@ if aux == True :
 # RECOPILACIÓN DE DATOS
 if aux == True:
     # Crea o abre el archivo CSV
-    csv_file = 'Datos/datos_calculadora.csv'
+    csv_file = 'Datos/datos.csv'
     
     # Función para guardar datos en el CSV
     def guardar_datos(fecha, hora ,Provincia,Monto,Programa,Tipodeinscripción,DescargóPDF):
