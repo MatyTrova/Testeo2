@@ -360,8 +360,8 @@ with colA :
             # Guardar y cerrar el PDF
         c.save()
         pdf_buffer.seek(0)
-        st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
-        st.text("descargó")
+        if st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf"):
+            st.text("descargó")
 
 
 with colB:
