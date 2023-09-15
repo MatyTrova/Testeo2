@@ -429,7 +429,7 @@ if aux == True:
     repo_name = 'MatyTrova/Testeo2'
     file_path = 'https://github.com/MatyTrova/Testeo2/blob/main/Datos/datos.csv'
     
-    def agregar_datos_a_github((fecha_actual, hora_actual , provincia_seleccionada , lista_variables1,lista_variables2 ,programa_seleccionado, tipo_inscripcion, descargo_pdf):
+    def agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables1,lista_variables2 ,programa_seleccionado, tipo_inscripcion, descargo_pdf):
         g = Github(github_token)
         repo = g.get_repo(repo_name)
         contents = repo.get_contents(file_path)
