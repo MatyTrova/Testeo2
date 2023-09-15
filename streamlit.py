@@ -429,7 +429,7 @@ if aux == True:
     import pandas as pd
     
     # Configura el repositorio de GitHub y el archivo CSV
-    github_token = "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"
+    github_token = st.secrets["TOKEN"]
     repo_name = 'MatyTrova/Testeo2'
     file_path = 'Datos/datos.csv'  # Provide the correct relative path to the file within the repository
     
