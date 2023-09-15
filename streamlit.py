@@ -8,6 +8,7 @@ import pytz
 import time
 import csv
 import pandas as pd
+from github import Github
 
 # Configuramos la página
 st.set_page_config(
@@ -424,25 +425,21 @@ if aux == True :
 
 # RECOPILACIÓN DE DATOS
 if aux == True:
-    # Crea o abre el archivo CSV
-    csv_file = 'Datos/datos.csv'
+ # Configura el repositorio de GitHub y el archivo CSV
+    github_token = st.secrets["TOKEN"]
+    repo_name = 'MatyTrova/Testeo2'
+    file_path = 'https://github.com/MatyTrova/Testeo2/blob/main/Datos/datos.csv'
     
-    # Función para guardar datos en el CSV
-    def guardar_datos(fecha, hora ,Provincia,Monto,Programa,Tipodeinscripción,DescargóPDF):
-        with open(csv_file, mode='a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([fecha, hora ,Provincia,Monto,Programa,Tipodeinscripción,DescargóPDF])
+    def agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf):
+        g = Github(github_token)
+        repo = g.get_repo(repo_name)
+        contents = repo.get_contents(file_path)
+        
+        # Lee el archivo CSV y agrega nuevos datos
+        df = pd.read_csv(contents.decoded_content)
+        df = df.append({'Fecha': fecha_actual, 'Hora': hora_actual, "Provincia": provincia_seleccionada, "Monto": lista_variables[0], "Precio Sugerido": lista_variables[1], "Programa": programa_seleccionado, "Tipo de inscripcion": tipo_inscripcion, "Descargo PDF":descargo_pdf }, ignore_index=True)
 
-    if descargo_pdf == True:
-        time.sleep(2)
-        descargo_pdf = "Si"
-    else:
-        descargo_pdf = "No"
-    # ACÁ GUARDAMOS LOS DATOS
-    
-    guardar_datos(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf)
-
-
+    agregar_datos_a_github(fecha_actual, hora_actual , provincia_seleccionada , lista_variables[0] ,programa_seleccionado, tipo_inscripcion, descargo_pdf)
 
 st.write("---")
 
@@ -542,7 +539,11 @@ with colder :
 st.write("---")
 st.text("SECCIÓN DE PRUEBA PARA VER DATOS RECOPILADOS")
 
-df = pd.read_csv("Datos/datos.csv")
-st.dataframe(df)
-df.to_csv("Datos/datos_2.csv")
+# Muestra los datos desde GitHub
+st.header('Datos almacenados en GitHub:')
+g = Github(github_token)
+repo = g.get_repo(repo_name)
+contents = repo.get_contents(file_path)
+df = pd.read_csv(contents.decoded_content)
+st.write(df)
 
