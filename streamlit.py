@@ -432,8 +432,7 @@ if aux == True:
 
     # Muestra los datos desde GitHub
         # Print results.
-    for row in df.itertuples():
-        st.write(f"{row.name} has a :{row.pet}:") 
+    st.dataframe(df)
 
 
 st.write("---")
