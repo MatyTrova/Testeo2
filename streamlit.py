@@ -6,6 +6,7 @@ from io import BytesIO
 import datetime
 import pytz
 import time
+import csv
 
 # Configuramos la página
 st.set_page_config(
