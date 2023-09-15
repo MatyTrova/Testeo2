@@ -8,18 +8,15 @@ import pytz
 import time
 import pandas as pd
 from github import Github
-
+import io
 # FUNCION PARA TOMAR DATOS
-    import io
-    from github import Github
-    import pandas as pd
     
     # Configura el repositorio de GitHub y el archivo CSV
-    github_token = st.secrets["TOKEN"]
-    repo_name = 'MatyTrova/Testeo2'
-    file_path = 'Datos/datos.csv'  # Provide the correct relative path to the file within the repository
+github_token = st.secrets["TOKEN"]
+repo_name = 'MatyTrova/Testeo2'
+file_path = 'Datos/datos.csv'  # Provide the correct relative path to the file within the repository
     
-    def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion, descargo_pdf):
+def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion, descargo_pdf):
         g = Github(github_token)
         repo = g.get_repo(repo_name)
         contents = repo.get_contents(file_path)
