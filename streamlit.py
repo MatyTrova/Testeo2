@@ -361,6 +361,7 @@ with colA :
         c.save()
         pdf_buffer.seek(0)
         st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
+        st.text("descargó")
 
 
 with colB:
