@@ -133,22 +133,113 @@ elif (tipo_inscripcion == "Monotributista"):
 else:
     pass    
 
-# Creamos la combinación de variables
-variables = provincia_seleccionada + " " + programa_seleccionado + " " + inscripcion_seleccionada
-st.write(variables)
-
-
 colA, colB = st.columns([1,2])
 with colA : 
     if st.button("Calcular"):
         if aux3 == True :
             if (aux_seleccionar_provincia == True) and (aux_programa == True) and (aux_inscripcion == True):
+                # Creamos la combinación de variables
+                variables = provincia_seleccionada + " " + programa_seleccionado + " " + inscripcion_seleccionada   
+
+                # OBTENEMOS LOS COEFICIENTES    
+                df = pd.read_csv("Datos/coeficientes_provincias.csv")
+                coeficiente = df.loc[df["Conjunto"].str.contains(variables, case=False)]["Coeficiente"]
+                coeficiente = coeficiente.iloc[0]    
+                    
+                # OBTENEMOS LA TASA DEL PROGRAMA
+                tasa_programa = tasas_cft[programa_seleccionado]
+                    
+                # ---
+                # LIQUIDACIÓN DE PAGO
+                # ---
                 
-                # Tasas de interés
-                tasas_interes = tasas_cft[programa_seleccionado]
+                # PRIMER CALCULO
+                precio_sugerido = monto_credito * coeficiente
                 
+                # SEGUNDO CALCULO   
+                arancel_1_8 = 0.018 * precio_sugerido
+                
+                # TERCER CALCULO
+                costo_financiero = tasa_programa * precio_sugerido
+                
+                # CUARTO CALCULO
+                iva_arancel = 0.21 * arancel_1_8
+                
+                # QUINTO CALCULO
+                iva_costo_financiero = costo_financiero * 0.105
+                
+                # CALCULAMOS EL SUBTOTAL
+                subtotal = precio_sugerido - (arancel_1_8 + costo_financiero + iva_arancel+ iva_costo_financiero )
+                
+                # SEXTO CALCULO
+                iva_rg = subtotal * 0.03
+                
+                # CALCULAMOS EL TOTAL COBRADO EN LA LIQUIDACIÓN
+                total_cobrado_liquidacion = subtotal - iva_rg
+
+                # ---
+                # CALCULO DE IMPUESTOS 
+                # ---
+                
+                # Definimos la tasa municipal
+                porcentaje_municipal = 0.01
+                
+                if "Monotributista" in prueba:
+                    # PRIMER CALCULO
+                    venta_neta_iva = 0
+                
+                    # SEGUNDO CALCULO
+                    iva_debito = 0
+                
+                    # TERCER CALCULO
+                    iva_credito = 0
+                
+                    # CUARTO CALCULO
+                    posicion_iva = 0
+                
+                    # QUINTO CALCULO
+                    saldo_cobrado = total_cobrado_liquidacion - posicion_iva
+                
+                elif "Responsable" in prueba:
+                    # PRIMER CALCULO
+                    venta_neta_iva = precio_sugerido / (1+ 0.21)
+                
+                    # SEGUNDO CALCULO
+                    iva_debito = venta_neta_iva * 0.21
+                
+                    # TERCER CALCULO
+                    iva_credito = iva_arancel + iva_costo_financiero + iva_rg
+                
+                    # CUARTO CALCULO
+                    posicion_iva = iva_debito - iva_credito
+                
+                    # QUINTO CALCULO
+                    saldo_cobrado = total_cobrado_liquidacion - posicion_iva
+                
+                # SEXTO
+                if "Monotributista" in prueba:
+                    tasa_municipal = precio_sugerido * porcentaje_municipal
+                
+                elif "Responsable" in prueba:
+                    tasa_municipal = venta_neta_iva * porcentaje_municipal
+                
+                
+                # OBTENEMOS LA ALICUOTA
+                alicuota = df.loc[df["Conjunto"].str.contains(prueba, case=False)]["Alicuota"]
+                alicuota = alicuota.iloc[0]
+                    
+                # SEPTIMO CALCULO
+                if "Monotributista" in prueba:
+                    iibb = precio_sugerido * alicuota
+                
+                elif "Responsable" in prueba:
+                    iibb = venta_neta_iva * alicuota
+
+                # OCTAVO CALCULO
+                utilidad_antes_de_costos = saldo_cobrado - tasa_municipal - iibb
+                    
                 # Creamos lista de variables
-                lista_variables = []
+                lista_variables = [monto_credito, precio_sugerido, arancel_1_8, costo_financiero, iva_arancel, iva_costo_financiero, subtotal, iva_rg, total_cobrado_liquidacion, venta_neta_iva, iva_debito, iva_credito, posicion_iva, saldo_cobrado, tasa_municipal, iibb, utilidad_antes_de_costos]
     
                 # iteramos para el formato
                 for i in range (len(lista_variables)) :
@@ -231,7 +322,10 @@ with colA :
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
 
-        c.setFont("Helvetica", 12)
+        c.setFont("Helvetica-Bold", 12)
+        c.drawString(100, 540, "Liquidación de pago")   
+            
+        c.setFont("Helvetica", 12)   
         c.drawString(200, 540, f"Monto actual: ${lista_variables[0]}")
         c.drawString(200, 520, f"Monto a cobrar: {lista_variables[1]}")
         c.drawString(200, 500, f"Total de descuentos: {lista_variables[11]}%")
@@ -241,11 +335,9 @@ with colA :
         tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
         porcentaje_iibb_str = str(porcentaje_iibb *100).replace(".",",")
         
-        c.setFont("Helvetica", 12)
-        c.drawString(100, 420, f"ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que ")
-        c.drawString(100, 410, f"permite percibir el precio de contado luego de los descuentos.")
         c.setFont("Helvetica-Bold", 12)
         c.drawString(200, 380, f"Detalle de descuentos")
+            
         c.setFont("Helvetica", 12)
         c.drawString(200, 360, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
         c.drawString(200, 340, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
