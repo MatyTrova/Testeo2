@@ -408,14 +408,7 @@ if aux == True :
     st.write(f"+ IVA Crédito: **${lista_variables[11]}**") 
     st.write(f"+ **Posición IVA: ${lista_variables[12]}**")   
     st.write(f"+ Tasa Municipal (1%): **${lista_variables[14]}**")     
-    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral: {porcentaje_iibb_str}%): **${lista_variables[15]}**")
-    
-    
-
-    if (tipo_inscripcion != "Monotributista"):
-        st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
-
-
+    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral: {alicuota_a_STR}%): **${lista_variables[15]}**")
 
 st.write("---")
 
@@ -511,3 +504,13 @@ with col_centro:
 
 with colder :
     st.write("")
+
+# Marca de versión en la parte inferior con CSS personalizado
+st.markdown(
+    """
+    <div style="font-size: 6px; text-align: left;">
+        v1.1.3
+    </div>
+    """,
+    unsafe_allow_html=True
+)
