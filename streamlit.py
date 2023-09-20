@@ -328,7 +328,7 @@ with colA :
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
 
-        # Define las coordenadas del cuadrado
+        # TABLA 1
         x1, y1 = 90, 310  # Esquina superior izquierda
         x2, y2 = 400, 540  # Esquina inferior derecha
         
@@ -393,12 +393,68 @@ with colA :
             c.drawString(category_x, 520 - i * line_spacing, category)
             c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 520 - i * line_spacing, value)
 
+        # TABLA 2
 
 
-        c.setFont("Helvetica-Bold", 16)
-        c.drawString(100, 260, f"Cálculo de impuestos")
-            
+            # TABLA 1
+        x1, y1 = 90, 220  # Esquina superior izquierda
+        x2, y2 = 400, 80  # Esquina inferior derecha
+        
+        # Dibuja el cuadrado
+        c.rect(x1, y1, x2 - x1, y2 - y1)
+        
+        # Establece la fuente y agrega tus cadenas de texto
         c.setFont("Helvetica", 12)
+        # Coordenada x para las categorías
+        category_x = x1 + 10
+        # Coordenada x para los valores (contra el margen derecho)
+        value_x = x2 - 10
+        # Espaciado vertical entre las líneas
+        line_spacing = 20
+            
+        c.setFont("Helvetica-Bold", 14)
+        c.drawString(100, 240, f"Cálculo de impuestos")
+        # Agrega las categorías y valores
+        c.setFont("Helvetica", 12)    
+        categories = [
+            "Venta neta IVA",
+            "IVA Débito",
+            "IVA Crédito",
+            "Posición IVA",
+            "Saldo cobrado",
+            "Tasa Municipal (1%)",
+            "IIBB",
+            "Utilidad Antes de Costos e IIGG"  
+        ]
+        
+        values = [
+            f"${lista_variables[9]}",
+            f"${lista_variables[10]}",
+            f"${lista_variables[11]}",
+            f"${lista_variables[12]}",
+            f"${lista_variables[13]}",
+            f"${lista_variables[14]}",
+            f"${lista_variables[15]}", 
+            f"${lista_variables[16]}"    
+        ]
+        
+        # Índices de los valores que deseas en negrita
+        bold_indices = [3,7]
+        
+        for i in range(len(categories)):
+            category = categories[i]
+            value = values[i]
+        
+            # Utiliza la fuente en negrita para los valores específicos
+            if i in bold_indices:
+                c.setFont("Helvetica-Bold", 12)
+            else:
+                c.setFont("Helvetica", 12)
+        
+            # Dibuja la categoría y el valor
+            c.drawString(category_x, 200 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 200 - i * line_spacing, value)
+            
 
 
         # Guardar y cerrar el PDF
