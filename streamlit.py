@@ -358,7 +358,8 @@ with colA :
             "IVA Arancel (21%):",
             "IVA Costo Financiero (10,50%):",
             "Subtotal",
-            "IVA RG 140/98 (3%)"
+            "IVA RG 140/98 (3%)",
+            "Total Cobrado en la liquidación"  
         ]
         
         values = [
@@ -371,11 +372,12 @@ with colA :
             f"${lista_variables[4]}",
             f"${lista_variables[5]}",
             f"${lista_variables[6]}",
-            f"${lista_variables[7]}"
+            f"${lista_variables[7]}",
+            f"${lista_variables[8]}"    
         ]
         
         # Índices de los valores que deseas en negrita
-        bold_indices = [0, 1, 5, 9]
+        bold_indices = [8,10]
         
         for i in range(len(categories)):
             category = categories[i]
