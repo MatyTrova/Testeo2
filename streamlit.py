@@ -413,7 +413,7 @@ with colA :
         line_spacing = 20
             
         c.setFont("Helvetica-Bold", 14)
-        c.drawString(90, 260, f"Cálculo de impuestos")
+        c.drawString(90, 250, f"Cálculo de impuestos")
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
