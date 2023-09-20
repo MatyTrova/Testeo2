@@ -7,44 +7,7 @@ import datetime
 import pytz
 import time
 import pandas as pd
-#from github import Github
-#import io
-#import github
 
-"""   
-# Configura el repositorio de GitHub y el archivo CSV
-github_token = st.secrets["TOKEN"] 
-repo_name = st.secrets["REPO"]
-file_path = st.secrets["ARCHIVO"]   
-    
-# Creamos la función para agregar datos    
-def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion):
-        g = Github(github_token)
-        repo = g.get_repo(repo_name)
-        contents = repo.get_contents(file_path)
-        # Create a file-like object from the decoded content
-        content_bytes = contents.decoded_content
-        content_file = io.BytesIO(content_bytes)
-        # Read the CSV from the file-like object
-        df = pd.read_csv(content_file)
-        # Create a DataFrame with the new data
-        new_data = pd.DataFrame({
-            'Fecha': [fecha_actual],
-            'Hora': [hora_actual],
-            'Provincia': [provincia_seleccionada],
-            'Monto': [lista_variables1],
-            'Precio Sugerido': [lista_variables2],
-            'Programa': [programa_seleccionado],
-            'Tipo de inscripcion': [tipo_inscripcion],
-        })
-        # Append the new DataFrame to the existing DataFrame
-        df = pd.concat([df, new_data], ignore_index=True)
-        # Save the updated DataFrame back to the file-like object
-        content_file.seek(0)  # Reset the file position to the beginning
-        df.to_csv(content_file, index=False)
-        # Update the file in the repository with the modified content
-        repo.update_file(contents.path, "Actualizado el archivo CSV", content_file.getvalue(), contents.sha)
-""" 
         
 # Configuramos la página
 st.set_page_config(
@@ -355,17 +318,6 @@ if aux == True :
     if (tipo_inscripcion != "Monotributista"):
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
-if aux == True:
-    try:
-        agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
-
-    # Si salta error, esperar dos segundos y volver a cargar    
-    except github.GithubException:
-        try:
-            time.sleep(2)
-            agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
-        except github.GithubException:
-            pass    
 
 
 st.write("---")
