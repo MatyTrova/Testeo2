@@ -323,11 +323,18 @@ with colA :
         c.drawString(text_x, text_y, texto)
 
         # Agrega una línea separadora
-        line_x1, line_y1 = 100, 320
-        line_x2, line_y2 = 520, 320
+        line_x1, line_y1 = 100, 280
+        line_x2, line_y2 = 520, 280
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
 
+        # Define las coordenadas del cuadrado
+        x1, y1 = 90, 330  # Esquina superior izquierda
+        x2, y2 = 400, 540  # Esquina inferior derecha
+        
+        # Dibuja el cuadrado
+        c.rect(x1, y1, x2 - x1, y2 - y1)
+            
         c.setFont("Helvetica-Bold", 12)
         c.drawString(100, 540, "Liquidación de pago")   
             
@@ -344,10 +351,10 @@ with colA :
         c.setFont("Helvetica-Bold", 12)
         c.drawString(200, 340, f"Subtotal {lista_variables[6]}")
         c.setFont("Helvetica", 12)
-        c.drawString(100, 340, f"IVA RG 140/98 (3%) {lista_variables[7]}")
+        c.drawString(100, 320, f"IVA RG 140/98 (3%) {lista_variables[7]}")
 
         c.setFont("Helvetica-Bold", 12)
-        c.drawString(200, 380, f"Detalle de descuentos")
+        c.drawString(100, 300, f"Cálculo de impuestos")
             
         c.setFont("Helvetica", 12)
 
