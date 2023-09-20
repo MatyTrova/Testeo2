@@ -9,25 +9,24 @@ import time
 import pandas as pd
 from github import Github
 import io
-# FUNCION PARA TOMAR DATOS
+import github
+
     
-    # Configura el repositorio de GitHub y el archivo CSV
-github_token = st.secrets["TOKEN"] # HACERLO CON ST.SECRETS
-repo_name = 'MatyTrova/Datos_privado' #HACERLO CON ST.SECRETS
-file_path = 'datos.csv' # HACERLO CON ST.SECRETS   Provide the correct relative path to the file within the repository # Provide the correct relative path to the file within the repository
+# Configura el repositorio de GitHub y el archivo CSV
+github_token = st.secrets["TOKEN"] 
+repo_name = st.secrets["REPO"]
+file_path = st.secrets["ARCHIVO"]   
     
+# Creamos la función para agregar datos    
 def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion):
         g = Github(github_token)
         repo = g.get_repo(repo_name)
         contents = repo.get_contents(file_path)
-        
         # Create a file-like object from the decoded content
         content_bytes = contents.decoded_content
         content_file = io.BytesIO(content_bytes)
-        
         # Read the CSV from the file-like object
         df = pd.read_csv(content_file)
-        
         # Create a DataFrame with the new data
         new_data = pd.DataFrame({
             'Fecha': [fecha_actual],
@@ -38,19 +37,13 @@ def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, li
             'Programa': [programa_seleccionado],
             'Tipo de inscripcion': [tipo_inscripcion],
         })
-        
         # Append the new DataFrame to the existing DataFrame
         df = pd.concat([df, new_data], ignore_index=True)
-        
         # Save the updated DataFrame back to the file-like object
         content_file.seek(0)  # Reset the file position to the beginning
         df.to_csv(content_file, index=False)
-        
         # Update the file in the repository with the modified content
         repo.update_file(contents.path, "Actualizado el archivo CSV", content_file.getvalue(), contents.sha)
-    
-
-
 
 # Configuramos la página
 st.set_page_config(
@@ -60,10 +53,11 @@ st.set_page_config(
 
 # Creamos la tasa de interés
 tasas_cft = {"Ahora 3" : 0.1024 ,
-         "Ahora 6" : 0.2887 ,
+         "Ahora 6" : 0.1887 ,
          "Ahora 12" : 0.3297 , 
          "Ahora 18" : 0.4380 ,
          "Ahora 24"  : 0.5221}
+# Aux = False
 aux = False
 
 
@@ -86,8 +80,8 @@ with col3 :
 
 
 st.write("---")
-# Realizamos el input del monto
 
+# Realizamos el input del monto
 monto_input = st.text_input("Precio contado", value="$")
 monto_credito = monto_input.strip()
 monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
@@ -104,15 +98,14 @@ else:
     except ValueError:
         aux3 = False        
         st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
-st.write("---")
 
-# Seleccionar provincias
+st.write("---")
 
 # listado de provincias
 provincias = [
-    "Seleccione una provincia",
+    "-",
     "Buenos Aires",
-    "Ciudad Autónoma de Buenos Aires",
+    "CABA",
     "Catamarca",
     "Chaco",
     "Chubut",
@@ -137,174 +130,76 @@ provincias = [
     "Tucumán"
 ]
 
-provincia_seleccionada = st.selectbox("# Seleccione la provincia",provincias)  
-
-if provincia_seleccionada == "Seleccione una provincia":
+# Seleccionar provincia
+provincia_seleccionada = st.selectbox("Seleccione la provincia",provincias)  
+if provincia_seleccionada == "-":
     aux_seleccionar_provincia = False
 else:
     aux_seleccionar_provincia = True
     
-if provincia_seleccionada == "Buenos Aires":
-    porcentaje_iibb = 0.05
-elif provincia_seleccionada == "Ciudad Autónoma de Buenos Aires":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Catamarca":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Chaco":
-    porcentaje_iibb = 0.035
-elif provincia_seleccionada == "Chubut":
-    porcentaje_iibb = 0.05
-elif provincia_seleccionada == "Córdoba":
-    porcentaje_iibb = 0.0475
-elif provincia_seleccionada == "Corrientes":
-    porcentaje_iibb = 0.029
-elif provincia_seleccionada == "Entre Ríos":
-    porcentaje_iibb = 0.035
-elif provincia_seleccionada == "Formosa":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Jujuy":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "La Pampa":
-    porcentaje_iibb = 0.028
-elif provincia_seleccionada == "La Rioja":
-    porcentaje_iibb = 0.025
-elif provincia_seleccionada == "Mendoza":
-    porcentaje_iibb = 0.0275
-elif provincia_seleccionada == "Misiones":
-    porcentaje_iibb = 0.025
-elif provincia_seleccionada == "Neuquén":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Río Negro":
-    porcentaje_iibb = 0.033
-elif provincia_seleccionada == "Salta":
-    porcentaje_iibb = 0.033
-elif provincia_seleccionada == "San Juan":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "San Luis":
-    porcentaje_iibb = 0.023
-elif provincia_seleccionada == "Santa Cruz":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Santa Fe":
-    porcentaje_iibb = 0.045
-elif provincia_seleccionada == "Santiago del Estero":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Tierra del Fuego":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Tucumán":
-    porcentaje_iibb = 0.029
 st.write("---")
-# Inputo de la cuota
-programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
+
+# Seleccionar el programa
+programas = ["-", "1 Cuota","Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
 programa_seleccionado = st.selectbox("Seleccione el programa",programas)    
+if programa_seleccionado == "-":
+    aux_programa = False
+else:
+    aux_programa = True
 
 st.write("---")
 
-# Que seleccione 
-inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
+# Seleccionar tipo de inscripción
+inscripciones = ["-", "Monotributista", "Responsable Inscripto", "Sociedad"]
 tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
+if tipo_inscripcion == "-":
+    aux_inscripcion = False
+else:
+    aux_inscripcion = True
 
 st.write("---")
 
+# Cambiamos un poco esto 
+inscripcion_seleccionada = ""
 
-                    # programa seleccionado
+if (tipo_inscripcion == "Responsable Inscripto") or (tipo_inscripcion == "Sociedad"): 
+    inscripcion_seleccionada = "Responsable"
+elif (tipo_inscripcion == "Monotributista"):
+    inscripcion_seleccionada = "Monotributista"
+else:
+    pass    
 
+# Creamos la combinación de variables
+variables = provincia_seleccionada + " " + programa_seleccionado + " " + inscripcion_seleccionada
+st.write(variables)
 
 
 colA, colB = st.columns([1,2])
 with colA : 
-    # por las dudas lo guardo :p
-    #with st.form("my_form"):
-    #    button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular",use_container_width=True)
-    
-    #if button_clicked:
-        # Cuando se hace clic en el botón, realiza alguna acción
-    #    aux = True
     if st.button("Calcular"):
         if aux3 == True :
-            if aux_seleccionar_provincia == True:
-                aux = True
+            if (aux_seleccionar_provincia == True) and (aux_programa == True) and (aux_inscripcion == True):
+                
+                # Tasas de interés
                 tasas_interes = tasas_cft[programa_seleccionado]
-    
-                    # Arancel de la tarjeta de credito
-                arancel_tarjeta = 0.018
-    
-                            # Calculamos la tasa del probrama
-                base_tasa_programa = monto_credito * tasas_interes
-    
-                            # Calculamos la base 2
-                base_arancel = monto_credito * arancel_tarjeta
-    
-                            # Iva arancel
-                iva_arancel = 0.21 * base_arancel
-    
-                            # Iva del programa
-                iva_programa = 0.105 * base_tasa_programa
-    
-                            # ingreso bruto
-                iibb = porcentaje_iibb * base_tasa_programa
-    
-                            # otro iva
-                iva3 = 0.015 * base_tasa_programa
-    
-                            # total de descuentos
-                total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
-    
-                            # neto_percibido
-                neto_percibido = monto_credito - total_descuentos_1
-    
-                            # descuento en %
-                total_descuentos_2 = (total_descuentos_1 / monto_credito )
-    
-                            # monto a cobrar
-                monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-    
                 
-    
-                # vuelvo a definir las variables según el monto a cobrar
-                # linea divisoria 1
-                base_tasa_programa = monto_a_cobrar * tasas_interes
-    
-                            # Calculamos la base 2
-                base_arancel = monto_a_cobrar * arancel_tarjeta
-    
-                            # Iva arancel
-                iva_arancel = 0.21 * base_arancel
-    
-                            # Iva del programa
-                iva_programa = 0.105 * base_tasa_programa
-    
-                            # ingreso bruto
-                iibb = porcentaje_iibb * base_tasa_programa
-    
-                            # otro iva
-                iva3 = 0.015 * base_tasa_programa
-    
-                # reintegro a percibir
-                reintegro = iva_arancel + iva_programa + iva3
-                # linea divisoria 2
-    
-                #descuentos %
-                total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
-    
-                total_descuentos_en_porcentaje_2 = (total_descuentos_1 / monto_credito ) * 100
-                
-                total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
-    
-                neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
-    
                 # Creamos lista de variables
-                lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
+                lista_variables = []
     
                 # iteramos para el formato
                 for i in range (len(lista_variables)) :
                     lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
                     lista_variables[i] = lista_variables[i].replace(".",",")
                     lista_variables[i] = lista_variables[i].replace(" ",".")
+
+                # COLOCAMOS TRUE AL AUXILIAR PARA AVANZAR    
+                aux = True    
             else:
                # Utiliza st.markdown para cambiar el color del texto
-                st.markdown("<span style='color: red;'>Provincia no válida.</span>", unsafe_allow_html=True)
+                st.markdown("<span style='color: red;'>Complete las variables.</span>", unsafe_allow_html=True)
         else:
             pass  
+
     if aux == True:
         # Nombre del archivo PDF
         pdf_filename = "Resumen precio sugerido.pdf"
@@ -366,13 +261,11 @@ with colA :
         # Agregar texto dentro del rectángulo
         c.drawString(text_x, text_y, texto)
 
-
         # Agrega una línea separadora
         line_x1, line_y1 = 100, 440
         line_x2, line_y2 = 520, 440
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
-
 
         c.setFont("Helvetica", 12)
         c.drawString(200, 540, f"Monto actual: ${lista_variables[0]}")
@@ -397,17 +290,15 @@ with colA :
         c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
         c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
         
-        
-        
         if (tipo_inscripcion != "Monotributista"):
             c.drawString(40, 220, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
 
-            # Guardar y cerrar el PDF
+        # Guardar y cerrar el PDF
         c.save()
         pdf_buffer.seek(0)
         st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
-        
-            
+         
+
 with colB:
     
     custom_css = """
@@ -464,7 +355,16 @@ if aux == True :
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
 if aux == True:
-    agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
+    try:
+        agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
+
+    # Si salta error, esperar dos segundos y volver a cargar    
+    except github.GithubException:
+        try:
+            time.sleep(2)
+            agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
+        except github.GithubException:
+            pass    
 
 
 st.write("---")
@@ -561,7 +461,3 @@ with col_centro:
 
 with colder :
     st.write("")
-
-st.write("---")
-
-
