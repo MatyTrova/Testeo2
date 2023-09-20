@@ -238,10 +238,15 @@ with colA :
 
                 # OCTAVO CALCULO
                 utilidad_antes_de_costos = saldo_cobrado - tasa_municipal - iibb
+
+                # DEFINIMOS ALGUNAS VARIABLES
+                total_descuento_pesos = precio_sugerido - monto_credito
+                tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
+                alicuota_a_STR = str(alicuota *100).replace(".",",")
                     
                 # Creamos lista de variables
-                lista_variables = [monto_credito, precio_sugerido, arancel_1_8, costo_financiero, iva_arancel, iva_costo_financiero, subtotal, iva_rg, total_cobrado_liquidacion, venta_neta_iva, iva_debito, iva_credito, posicion_iva, saldo_cobrado, tasa_municipal, iibb, utilidad_antes_de_costos]
-    
+                lista_variables = [monto_credito, precio_sugerido, arancel_1_8, costo_financiero, iva_arancel, iva_costo_financiero, subtotal, iva_rg, total_cobrado_liquidacion, venta_neta_iva, iva_debito, iva_credito, posicion_iva, saldo_cobrado, tasa_municipal, iibb, utilidad_antes_de_costos, total_descuento_pesos]
+                    
                 # iteramos para el formato
                 for i in range (len(lista_variables)) :
                     lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
@@ -332,9 +337,6 @@ with colA :
         c.drawString(200, 500, f"Total de descuentos: {lista_variables[11]}%")
         c.drawString(200, 480, f"Total de descuentos en pesos: ${lista_variables[2]}")
         c.drawString(200, 460, f"Neto a percibir: ${lista_variables[3]}")
-
-        tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
-        porcentaje_iibb_str = str(porcentaje_iibb *100).replace(".",",")
         
         c.setFont("Helvetica-Bold", 12)
         c.drawString(200, 380, f"Detalle de descuentos")
@@ -355,7 +357,7 @@ with colA :
         pdf_buffer.seek(0)
         st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
          
-
+# ESCRIBIMOS RESULTADOS
 with colB:
     
     custom_css = """
@@ -373,9 +375,8 @@ with colB:
         
     if aux == True :
         st.markdown(custom_css, unsafe_allow_html=True)
-        monto_final = f"${lista_variables[1]}"
         tarjeta = f'<div class="tarjeta" style="font-size: 45px;font-weight: bold; ">${lista_variables[1]}</div>'
-        st.markdown('<div class="subheader">El precio sugerido es:</div>', unsafe_allow_html=True)
+        st.markdown('<div class="subheader">El precio sugerido a cobrar es:</div>', unsafe_allow_html=True)
         st.markdown(tarjeta, unsafe_allow_html=True)
         st.markdown('</div></div>', unsafe_allow_html=True)
         #st.write(f"El precio sugerido es:")
@@ -387,25 +388,28 @@ with colB:
 
 if aux == True : 
     st.write("---")
-    st.write(f"+ ##### Monto actual: ${lista_variables[0]}")
-    st.write(f"+ ##### Monto a cobrar: ${lista_variables[1]}")
-    st.write(f"+ ##### Total de descuentos: {lista_variables[11]}%")
-    st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[2]}")
-    st.write(f"+ ##### Neto a percibir: ${lista_variables[3]}")
-
-
-
+    st.write(f"+ ##### Precio de contado: ${lista_variables[0]}")
+    st.write(f"+ ##### Precio sugerido a cobrar: ${lista_variables[1]}")
+    st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[17]}")
 
 if aux == True : 
     st.write("---")
-    st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, lo que permite percibir el precio de contado luego de los descuentos.")
+    st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, aplicando los descuentos correspondientes al programa seleccionado, IVA, IIBB y la tasa municipal.")
     st.write("**Detalle de descuentos:**")
-    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[4]}**")
-    st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
-    st.write(f"+ IVA (21%): **${lista_variables[6]}**")
-    st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[7]}**")
-    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb_str}%): **${lista_variables[8]}**")
-    st.write(f"+ IVA RG2408 (1,5%): **${lista_variables[9]}**")
+    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[3]}**")
+    st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[2]}**")
+    st.write(f"+ IVA (21%): **${lista_variables[4]}**")
+    st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[5]}**")
+    st.write(f"+ **Subtotal: ${lista_variables[6]}**")   
+    st.write(f"+ IVA RG 140/98 (3%): **${lista_variables[7]}**") 
+    st.write(f"+ **Liquidación: ${lista_variables[8]}**") 
+    st.write("---")
+    st.write(f"+ IVA Débito: **${lista_variables[10]}**")     
+    st.write(f"+ IVA Crédito: **${lista_variables[11]}**") 
+    st.write(f"+ **Posición IVA: ${lista_variables[12]}**")   
+    st.write(f"+ Tasa Municipal (1%): **${lista_variables[14]}**")     
+    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral: {porcentaje_iibb_str}%): **${lista_variables[15]}**")
+    
     
 
     if (tipo_inscripcion != "Monotributista"):
