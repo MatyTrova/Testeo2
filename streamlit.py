@@ -226,7 +226,7 @@ with colA :
                 
                 
                 # OBTENEMOS LA ALICUOTA
-                alicuota = df.loc[df["Conjunto"].str.contains(prueba, case=False)]["Alicuota"]
+                alicuota = df.loc[df["Conjunto"].str.contains(variables, case=False)]["Alicuota"]
                 alicuota = alicuota.iloc[0]
                     
                 # SEPTIMO CALCULO
