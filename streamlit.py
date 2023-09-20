@@ -230,10 +230,10 @@ with colA :
                 alicuota = alicuota.iloc[0]
                     
                 # SEPTIMO CALCULO
-                if "Monotributista" in prueba:
+                if "Monotributista" in variables:
                     iibb = precio_sugerido * alicuota
                 
-                elif "Responsable" in prueba:
+                elif "Responsable" in variables:
                     iibb = venta_neta_iva * alicuota
 
                 # OCTAVO CALCULO
