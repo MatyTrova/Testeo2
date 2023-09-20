@@ -397,8 +397,8 @@ with colA :
 
 
             # TABLA 1
-        x1, y1 = 90, 220  # Esquina superior izquierda
-        x2, y2 = 400, 40  # Esquina inferior derecha
+        x1, y1 = 90, 240  # Esquina superior izquierda
+        x2, y2 = 400, 60  # Esquina inferior derecha
         
         # Dibuja el cuadrado
         c.rect(x1, y1, x2 - x1, y2 - y1)
@@ -413,7 +413,7 @@ with colA :
         line_spacing = 20
             
         c.setFont("Helvetica-Bold", 14)
-        c.drawString(90, 230, f"Cálculo de impuestos")
+        c.drawString(90, 260, f"Cálculo de impuestos")
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
@@ -452,8 +452,8 @@ with colA :
                 c.setFont("Helvetica", 12)
         
             # Dibuja la categoría y el valor
-            c.drawString(category_x, 200 - i * line_spacing, category)
-            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 200 - i * line_spacing, value)
+            c.drawString(category_x, 220 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 220 - i * line_spacing, value)
             
 
 
