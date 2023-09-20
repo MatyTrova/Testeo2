@@ -249,7 +249,7 @@ with colA :
                     
                 # iteramos para el formato
                 for i in range (len(lista_variables)) :
-                    lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
+                    lista_variables[i] = '{:,.2f}'.format(lista_variables[i]).replace(',', ' ')
                     lista_variables[i] = lista_variables[i].replace(".",",")
                     lista_variables[i] = lista_variables[i].replace(" ",".")
 
