@@ -105,7 +105,7 @@ else:
 st.write("---")
 
 # Seleccionar el programa
-programas = ["-", "1 Cuota","Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
+programas = ["-", "1 Cuota","Ahora 03","Ahora 06","Ahora 12","Ahora 18","Ahora 24"]
 programa_seleccionado = st.selectbox("Seleccione el programa",programas)    
 if programa_seleccionado == "-":
     aux_programa = False
