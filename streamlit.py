@@ -7,11 +7,11 @@ import datetime
 import pytz
 import time
 import pandas as pd
-from github import Github
-import io
-import github
+#from github import Github
+#import io
+#import github
 
-    
+"""   
 # Configura el repositorio de GitHub y el archivo CSV
 github_token = st.secrets["TOKEN"] 
 repo_name = st.secrets["REPO"]
@@ -44,7 +44,8 @@ def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, li
         df.to_csv(content_file, index=False)
         # Update the file in the repository with the modified content
         repo.update_file(contents.path, "Actualizado el archivo CSV", content_file.getvalue(), contents.sha)
-
+""" 
+        
 # Configuramos la página
 st.set_page_config(
     page_title="Calculadora Ahora 12",
