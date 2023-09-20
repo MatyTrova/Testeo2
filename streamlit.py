@@ -395,12 +395,14 @@ if aux == True :
     st.write(f"+ IVA RG 140/98 (3%): **${lista_variables[7]}**") 
     st.write(f"+ **Liquidación: ${lista_variables[8]}**") 
     st.write("---")
+    st.write(f"+ Venta neta de IVA: **${lista_variables[9]}**")     
     st.write(f"+ IVA Débito: **${lista_variables[10]}**")     
     st.write(f"+ IVA Crédito: **${lista_variables[11]}**") 
     st.write(f"###### **Posición IVA: ${lista_variables[12]}**")   
     st.write(f"+ Tasa Municipal (1%): **${lista_variables[14]}**")     
     st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral: {alicuota_a_STR}%): **${lista_variables[15]}**")
-
+    st.write(f"##### **Utilidad Antes de Costos e IIGG**: ${lista_variables[16]}")
+        
 st.write("---")
 
 st.markdown("Para mayor información [click aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
