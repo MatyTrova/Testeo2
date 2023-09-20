@@ -17,8 +17,8 @@ st.set_page_config(
 
 # Creamos la tasa de interés
 tasas_cft = {"1 Cuota" : 0.0,
-         "Ahora 3" : 0.1024 ,
-         "Ahora 6" : 0.1887 ,
+         "Ahora 03" : 0.1024 ,
+         "Ahora 06" : 0.1887 ,
          "Ahora 12" : 0.3297 , 
          "Ahora 18" : 0.4380 ,
          "Ahora 24"  : 0.5221}
