@@ -185,7 +185,7 @@ with colA :
                 # Definimos la tasa municipal
                 porcentaje_municipal = 0.01
                 
-                if "Monotributista" in prueba:
+                if "Monotributista" in variables:
                     # PRIMER CALCULO
                     venta_neta_iva = 0
                 
@@ -201,7 +201,7 @@ with colA :
                     # QUINTO CALCULO
                     saldo_cobrado = total_cobrado_liquidacion - posicion_iva
                 
-                elif "Responsable" in prueba:
+                elif "Responsable" in variables:
                     # PRIMER CALCULO
                     venta_neta_iva = precio_sugerido / (1+ 0.21)
                 
@@ -218,10 +218,10 @@ with colA :
                     saldo_cobrado = total_cobrado_liquidacion - posicion_iva
                 
                 # SEXTO
-                if "Monotributista" in prueba:
+                if "Monotributista" in variables:
                     tasa_municipal = precio_sugerido * porcentaje_municipal
                 
-                elif "Responsable" in prueba:
+                elif "Responsable" in variables:
                     tasa_municipal = venta_neta_iva * porcentaje_municipal
                 
                 
