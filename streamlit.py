@@ -329,7 +329,7 @@ with colA :
         c.line(line_x1, line_y1, line_x2, line_y2)
 
         # Define las coordenadas del cuadrado
-        x1, y1 = 90, 330  # Esquina superior izquierda
+        x1, y1 = 90, 300  # Esquina superior izquierda
         x2, y2 = 400, 540  # Esquina inferior derecha
         
         # Dibuja el cuadrado
@@ -343,7 +343,9 @@ with colA :
         value_x = x2 - 10
         # Espaciado vertical entre las líneas
         line_spacing = 20
-        
+            
+        c.setFont("Helvetica-Bold", 12)
+        c.drawString(100, 560, "Liquidación de pago")   
         # Agrega las categorías y valores
         categories = [
             "Venta a precio de contado:",
@@ -354,7 +356,6 @@ with colA :
             f"Costo Financiero del programa ({tasas_a_STR}):",
             "IVA Arancel (21%):",
             "IVA Costo Financiero (10,50%):",
-            "Venta a precio de contado",
             "Subtotal",
             "IVA RG 140/98 (3%)"
         ]
@@ -368,7 +369,6 @@ with colA :
             f"${lista_variables[3]}",
             f"${lista_variables[4]}",
             f"${lista_variables[5]}",
-            "",
             f"${lista_variables[6]}",
             f"${lista_variables[7]}"
         ]
