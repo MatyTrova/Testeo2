@@ -345,8 +345,9 @@ with colA :
         line_spacing = 20
             
         c.setFont("Helvetica-Bold", 12)
-        c.drawString(100, 560, "Liquidación de pago")   
+        c.drawString(80, 560, "Liquidación de pago")   
         # Agrega las categorías y valores
+        c.setFont("Helvetica", 12)    
         categories = [
             "Venta a precio de contado:",
             f"Financiado en {programa_seleccionado}:",
@@ -373,9 +374,23 @@ with colA :
             f"${lista_variables[7]}"
         ]
         
+        # Índices de los valores que deseas en negrita
+        bold_indices = [0, 1, 5, 9]
+        
         for i in range(len(categories)):
-            c.drawString(category_x, 520 - i * line_spacing, categories[i])
-            c.drawString(value_x - c.stringWidth(values[i], "Helvetica", 12), 520 - i * line_spacing, values[i])
+            category = categories[i]
+            value = values[i]
+        
+            # Utiliza la fuente en negrita para los valores específicos
+            if i in bold_indices:
+                c.setFont("Helvetica-Bold", 12)
+            else:
+                c.setFont("Helvetica", 12)
+        
+            # Dibuja la categoría y el valor
+            c.drawString(category_x, 520 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 520 - i * line_spacing, value)
+
 
 
         c.setFont("Helvetica-Bold", 12)
