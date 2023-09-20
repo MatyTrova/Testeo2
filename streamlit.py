@@ -329,7 +329,7 @@ with colA :
         c.line(line_x1, line_y1, line_x2, line_y2)
 
         # Define las coordenadas del cuadrado
-        x1, y1 = 90, 300  # Esquina superior izquierda
+        x1, y1 = 90, 310  # Esquina superior izquierda
         x2, y2 = 400, 540  # Esquina inferior derecha
         
         # Dibuja el cuadrado
@@ -344,8 +344,8 @@ with colA :
         # Espaciado vertical entre las líneas
         line_spacing = 20
             
-        c.setFont("Helvetica-Bold", 12)
-        c.drawString(80, 560, "Liquidación de pago")   
+        c.setFont("Helvetica-Bold", 16)
+        c.drawString(100, 560, "Liquidación de pago")   
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
@@ -395,8 +395,8 @@ with colA :
 
 
 
-        c.setFont("Helvetica-Bold", 12)
-        c.drawString(100, 300, f"Cálculo de impuestos")
+        c.setFont("Helvetica-Bold", 16)
+        c.drawString(100, 260, f"Cálculo de impuestos")
             
         c.setFont("Helvetica", 12)
 
