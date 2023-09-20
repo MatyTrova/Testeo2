@@ -323,8 +323,8 @@ with colA :
         c.drawString(text_x, text_y, texto)
 
         # Agrega una línea separadora
-        line_x1, line_y1 = 100, 440
-        line_x2, line_y2 = 520, 440
+        line_x1, line_y1 = 100, 320
+        line_x2, line_y2 = 520, 320
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
 
@@ -332,16 +332,25 @@ with colA :
         c.drawString(100, 540, "Liquidación de pago")   
             
         c.setFont("Helvetica", 12)   
-     
-        
+        c.drawString(100, 520, f"Venta a precio de contado: ${lista_variables[0]}")   
+        c.drawString(100, 500, f"Financiado en {programa_seleccionado}: ${lista_variables[1]}")   
+        c.drawString(100, 480, f"Provincia: {provincia_seleccionada}")   
+        c.drawString(100, 460, f"AFIP: {tipo_inscripcion}")   
+        c.drawString(100, 440, f"Arancel 1,8%: ${lista_variables[2]}")   
+        c.drawString(100, 420, f"Costo Financiero del programa ({tasas_a_STR}): ${lista_variables[3]}")   
+        c.drawString(100, 400, f"IVA Arancel (21%): ${lista_variables[4]}")   
+        c.drawString(100, 380, f"IVA Costo Financiero (10,50%): ${lista_variables[5]}")   
+        c.drawString(100, 360, f"Venta a precio de contado")   
+        c.setFont("Helvetica-Bold", 12)
+        c.drawString(200, 340, f"Subtotal {lista_variables[6]}")
+        c.setFont("Helvetica", 12)
+        c.drawString(100, 340, f"IVA RG 140/98 (3%) {lista_variables[7]}")
+
         c.setFont("Helvetica-Bold", 12)
         c.drawString(200, 380, f"Detalle de descuentos")
             
         c.setFont("Helvetica", 12)
 
-        
-        if (tipo_inscripcion != "Monotributista"):
-            c.drawString(40, 220, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
 
         # Guardar y cerrar el PDF
         c.save()
