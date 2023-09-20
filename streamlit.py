@@ -344,8 +344,8 @@ with colA :
         # Espaciado vertical entre las líneas
         line_spacing = 20
             
-        c.setFont("Helvetica-Bold", 16)
-        c.drawString(100, 560, "Liquidación de pago")   
+        c.setFont("Helvetica-Bold", 14)
+        c.drawString(90, 550, "Liquidación de pago")   
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
