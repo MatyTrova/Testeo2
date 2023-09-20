@@ -336,7 +336,7 @@ with colA :
         c.rect(x1, y1, x2 - x1, y2 - y1)
             
         c.setFont("Helvetica-Bold", 12)
-        c.drawString(100, 540, "Liquidación de pago")   
+        c.drawString(100, 560, "Liquidación de pago")   
             
         c.setFont("Helvetica", 12)   
         c.drawString(100, 520, f"Venta a precio de contado: ${lista_variables[0]}")   
@@ -349,7 +349,7 @@ with colA :
         c.drawString(100, 380, f"IVA Costo Financiero (10,50%): ${lista_variables[5]}")   
         c.drawString(100, 360, f"Venta a precio de contado")   
         c.setFont("Helvetica-Bold", 12)
-        c.drawString(200, 340, f"Subtotal {lista_variables[6]}")
+        c.drawString(100, 340, f"Subtotal {lista_variables[6]}")
         c.setFont("Helvetica", 12)
         c.drawString(100, 320, f"IVA RG 140/98 (3%) {lista_variables[7]}")
 
