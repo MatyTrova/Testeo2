@@ -398,7 +398,7 @@ with colA :
 
             # TABLA 1
         x1, y1 = 90, 220  # Esquina superior izquierda
-        x2, y2 = 400, 80  # Esquina inferior derecha
+        x2, y2 = 400, 40  # Esquina inferior derecha
         
         # Dibuja el cuadrado
         c.rect(x1, y1, x2 - x1, y2 - y1)
@@ -413,7 +413,7 @@ with colA :
         line_spacing = 20
             
         c.setFont("Helvetica-Bold", 14)
-        c.drawString(100, 240, f"Cálculo de impuestos")
+        c.drawString(90, 230, f"Cálculo de impuestos")
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
