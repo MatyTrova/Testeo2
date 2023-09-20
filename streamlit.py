@@ -334,24 +334,49 @@ with colA :
         
         # Dibuja el cuadrado
         c.rect(x1, y1, x2 - x1, y2 - y1)
-            
-        c.setFont("Helvetica-Bold", 12)
-        c.drawString(100, 560, "Liquidación de pago")   
-            
-        c.setFont("Helvetica", 12)   
-        c.drawString(100, 520, f"Venta a precio de contado: ${lista_variables[0]}")   
-        c.drawString(100, 500, f"Financiado en {programa_seleccionado}: ${lista_variables[1]}")   
-        c.drawString(100, 480, f"Provincia: {provincia_seleccionada}")   
-        c.drawString(100, 460, f"AFIP: {tipo_inscripcion}")   
-        c.drawString(100, 440, f"Arancel 1,8%: ${lista_variables[2]}")   
-        c.drawString(100, 420, f"Costo Financiero del programa ({tasas_a_STR}): ${lista_variables[3]}")   
-        c.drawString(100, 400, f"IVA Arancel (21%): ${lista_variables[4]}")   
-        c.drawString(100, 380, f"IVA Costo Financiero (10,50%): ${lista_variables[5]}")   
-        c.drawString(100, 360, f"Venta a precio de contado")   
-        c.setFont("Helvetica-Bold", 12)
-        c.drawString(100, 340, f"Subtotal {lista_variables[6]}")
+        
+        # Establece la fuente y agrega tus cadenas de texto
         c.setFont("Helvetica", 12)
-        c.drawString(100, 320, f"IVA RG 140/98 (3%) {lista_variables[7]}")
+        # Coordenada x para las categorías
+        category_x = x1 + 10
+        # Coordenada x para los valores (contra el margen derecho)
+        value_x = x2 - 10
+        # Espaciado vertical entre las líneas
+        line_spacing = 20
+        
+        # Agrega las categorías y valores
+        categories = [
+            "Venta a precio de contado:",
+            f"Financiado en {programa_seleccionado}:",
+            "Provincia:",
+            "AFIP:",
+            "Arancel 1,8%:",
+            f"Costo Financiero del programa ({tasas_a_STR}):",
+            "IVA Arancel (21%):",
+            "IVA Costo Financiero (10,50%):",
+            "Venta a precio de contado",
+            "Subtotal",
+            "IVA RG 140/98 (3%)"
+        ]
+        
+        values = [
+            f"${lista_variables[0]}",
+            f"${lista_variables[1]}",
+            provincia_seleccionada,
+            tipo_inscripcion,
+            f"${lista_variables[2]}",
+            f"${lista_variables[3]}",
+            f"${lista_variables[4]}",
+            f"${lista_variables[5]}",
+            "",
+            f"${lista_variables[6]}",
+            f"${lista_variables[7]}"
+        ]
+        
+        for i in range(len(categories)):
+            c.drawString(category_x, 520 - i * line_spacing, categories[i])
+            c.drawString(value_x - c.stringWidth(values[i], "Helvetica", 12), 520 - i * line_spacing, values[i])
+
 
         c.setFont("Helvetica-Bold", 12)
         c.drawString(100, 300, f"Cálculo de impuestos")
