@@ -673,3 +673,12 @@ st.markdown(
 tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
 tab1.write("this is tab 1")
 tab2.write("this is tab 2")
+
+from streamlit_extras.let_it_rain import rain
+
+rain(
+    emoji="🎈",
+    font_size=54,
+    falling_speed=5,
+    animation_length="infinite",
+)
