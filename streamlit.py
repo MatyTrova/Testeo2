@@ -46,7 +46,7 @@ def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, li
         
 # Configuramos la página
 st.set_page_config(
-    page_title="Calculadora Ahora 12",
+    page_title="TESTEO de Calculadora Ahora 12",
     page_icon="imgs/CAME-Transparente.ico.ico",
     )
 
