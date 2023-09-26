@@ -682,3 +682,12 @@ rain(
     falling_speed=5,
     animation_length="infinite",
 )
+
+from streamlit_card import card
+
+card(
+    title="Hello World!",
+    text="Some description",
+    image="http://placekitten.com/300/250",
+    url="https://www.google.com",
+)
