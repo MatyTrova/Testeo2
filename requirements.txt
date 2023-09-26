@@ -2,3 +2,4 @@ streamlit
 reportlab
 pandas
 pygithub==1.55
+streamlit_extras
