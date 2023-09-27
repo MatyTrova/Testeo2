@@ -359,13 +359,13 @@ with colA :
 
         # ACLARACIÓN 
         c.setFont("Helvetica-Bold", 10)
-        c.drawString(90, 550, "ACLARACIÓN")
+        c.drawString(90, 555, "ACLARACIÓN")
         c.setFont("Helvetica", 8)
-        c.drawString(90, 540, "El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo.") 
-        c.drawString(90, 530, "La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada,")
-        c.drawString(90, 520, "la información que un comercio puede necesitar para definir, por decisión propia,") 
-        c.drawString(90, 510, "los precios de los productos y servicios que comercializa a través de las promociones del programa Ahora.")
-        c.drawString(90, 500, "Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")   
+        c.drawString(90, 545, "El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo.") 
+        c.drawString(90, 535, "La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada,")
+        c.drawString(90, 525, "la información que un comercio puede necesitar para definir, por decisión propia,") 
+        c.drawString(90, 515, "los precios de los productos y servicios que comercializa a través de las promociones del programa Ahora.")
+        c.drawString(90, 505, "Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")   
                      
         # Agrega una línea separadora
         line_x1, line_y1 = 100, 210
