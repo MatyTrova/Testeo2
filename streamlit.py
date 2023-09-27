@@ -360,7 +360,7 @@ with colA :
         # ACLARACIÓN 
         c.setFont("Helvetica-Bold", 10)
         c.drawString(90, 555, "ACLARACIÓN")
-        c.setFont("Helvetica", 8)
+        c.setFont("Helvetica", 9)
         c.drawString(90, 545, "El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo.") 
         c.drawString(90, 535, "La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada,")
         c.drawString(90, 525, "la información que un comercio puede necesitar para definir, por decisión propia,") 
