@@ -357,6 +357,9 @@ with colA :
         # Agregar texto dentro del rectángulo
         c.drawString(text_x, text_y, texto)
 
+        # ACLARACIÓN 
+        c.setFont("Helvetica", 11)
+        c.drawString(20, 550, "El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo. La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada, la información que un comercio puede necesitar para definir, por decisión propia, los precios de los productos y servicios que comercializa a través de las promociones del programa Ahora. Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")   
         # Agrega una línea separadora
         line_x1, line_y1 = 100, 280
         line_x2, line_y2 = 520, 280
