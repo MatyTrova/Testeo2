@@ -358,12 +358,14 @@ with colA :
         c.drawString(text_x, text_y, texto)
 
         # ACLARACIÓN 
-        c.setFont("Helvetica", 11)
-        c.drawString(20, 550, "El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo.") 
-        c.drawString(20, 540, "La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada,")
-        c.drawString(20, 530, "la información que un comercio puede necesitar para definir, por decisión propia,") 
-        c.drawString(20, 520, "los precios de los productos y servicios que comercializa a través de las promociones del programa Ahora.")
-        c.drawString(20, 510, "Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")   
+        c.setFont("Helvetica-Bold", 10)
+        c.drawString(20, 550, "ACLARACIÓN")
+        c.setFont("Helvetica", 8)
+        c.drawString(20, 540, "El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo.") 
+        c.drawString(20, 530, "La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada,")
+        c.drawString(20, 520, "la información que un comercio puede necesitar para definir, por decisión propia,") 
+        c.drawString(20, 510, "los precios de los productos y servicios que comercializa a través de las promociones del programa Ahora.")
+        c.drawString(20, 500, "Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")   
                      
         # Agrega una línea separadora
         line_x1, line_y1 = 100, 210
@@ -372,8 +374,8 @@ with colA :
         c.line(line_x1, line_y1, line_x2, line_y2)
 
         # TABLA 1
-        x1, y1 = 90, 220  # Esquina superior izquierda
-        x2, y2 = 400, 480  # Esquina inferior derecha
+        x1, y1 = 90, 470  # Esquina superior izquierda
+        x2, y2 = 400, 230  # Esquina inferior derecha
         
         # Dibuja el cuadrado
         c.rect(x1, y1, x2 - x1, y2 - y1)
@@ -388,7 +390,7 @@ with colA :
         line_spacing = 20
             
         c.setFont("Helvetica-Bold", 14)
-        c.drawString(90, 490, "Liquidación de pago")   
+        c.drawString(90, 480, "Liquidación de pago")   
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
@@ -433,8 +435,8 @@ with colA :
                 c.setFont("Helvetica", 12)
         
             # Dibuja la categoría y el valor
-            c.drawString(category_x, 470 - i * line_spacing, category)
-            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 470 - i * line_spacing, value)
+            c.drawString(category_x, 440 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 440 - i * line_spacing, value)
 
         # TABLA 2
 
