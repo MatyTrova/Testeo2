@@ -968,3 +968,29 @@ st.markdown('<div class="ag-courses_item">Elemento de curso</div>', unsafe_allow
 st.markdown('<div class="ag-courses_item">Otro elemento de curso</div>', unsafe_allow_html=True)
 st.markdown('<div class="ag-courses-item_link">Enlace de curso</div>', unsafe_allow_html=True)
 st.markdown('<div class="ag-courses-item_date">Fecha de curso</div>', unsafe_allow_html=True)
+
+
+# Usar la función st.markdown para insertar el CSS
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Crear marcadores de Streamlit con clases definidas en el CSS
+st.markdown('<div class="ag-format-container">Contenedor de formato</div>', unsafe_allow_html=True)
+st.markdown('<div class="body">Cuerpo del documento</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_box">Cajas de cursos</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_item">Elemento de curso</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_item_core_1">Elemento de curso core 1</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_item_gris_title">Título gris</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_item_gris_subtitle">Subtítulo gris</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_item_core_2">Elemento de curso core 2</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_link">Enlace de curso</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_link_gris">Enlace gris</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_link_core">Enlace de curso core</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_link_core_2">Enlace de curso core 2</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_link_core_3">Enlace de curso core 3</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_title">Título de curso</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_title_core">Título de curso core</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_date-box">Caja de fecha</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_date">Fecha de curso</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_bg">Fondo del elemento de curso</div>', unsafe_allow_html=True)
+
+# Puedes seguir agregando más marcadores con clases según sea necesario
