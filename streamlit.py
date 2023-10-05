@@ -973,26 +973,6 @@ st.markdown('<div class="ag-courses-item_date">Fecha de curso</div>', unsafe_all
 # Usar la función st.markdown para insertar el CSS
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# Crear marcadores de Streamlit con clases definidas en el CSS
-st.markdown('<div class="ag-format-container">Contenedor de formato</div>', unsafe_allow_html=True)
-st.markdown('<div class="body">Cuerpo del documento</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses_box">Cajas de cursos</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses_item">Elemento de curso</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses_item_core_1">Elemento de curso core 1</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses_item_gris_title">Título gris</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses_item_gris_subtitle">Subtítulo gris</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses_item_core_2">Elemento de curso core 2</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_link">Enlace de curso</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_link_gris">Enlace gris</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_link_core">Enlace de curso core</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_link_core_2">Enlace de curso core 2</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_link_core_3">Enlace de curso core 3</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_title">Título de curso</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_title_core">Título de curso core</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_date-box">Caja de fecha</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_date">Fecha de curso</div>', unsafe_allow_html=True)
-st.markdown('<div class="ag-courses-item_bg">Fondo del elemento de curso</div>', unsafe_allow_html=True)
-
 # Puedes seguir agregando más marcadores con clases según sea necesario
 
 tarjeta1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item"><div href="#" class="ag-courses-item_link"><div class="ag-courses-item_bg"></div><div class="ag-courses-item_title"><span class="adjustable-text"> Subscritos <br>1212</span></div></div></div></div></div></div>'
@@ -1002,3 +982,8 @@ tarjeta4 = f'<div class="ag-format-container"><div class="ag-courses_box"><div c
 st.markdown(tarjeta1, unsafe_allow_html=True)
 st.markdown(tarjeta3, unsafe_allow_html=True)
 st.markdown(tarjeta4, unsafe_allow_html=True)
+
+tarjeta_clientes_contactados_col1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_1"><div href="#" class="ag-courses-item_link_core"><div class="ag-courses-item_title_core"> Clientes Totales Contactados <br> {clientes_contactados}</div></div></div></div></div>'
+tarjeta_clientes_con_respuesta_col1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_1"><div href="#" class="ag-courses-item_link_core"><div class="ag-courses-item_title_core"> Clientes con respuesta <br> {clientes_que_respondieron}</div></div></div></div></div>'
+st.markdown(tarjeta_clientes_con_respuesta_col1, unsafe_allow_html=True)
+st.markdown(tarjeta_clientes_contactados_col1, unsafe_allow_html=True)
