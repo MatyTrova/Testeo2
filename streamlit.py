@@ -994,3 +994,11 @@ st.markdown('<div class="ag-courses-item_date">Fecha de curso</div>', unsafe_all
 st.markdown('<div class="ag-courses-item_bg">Fondo del elemento de curso</div>', unsafe_allow_html=True)
 
 # Puedes seguir agregando más marcadores con clases según sea necesario
+
+tarjeta1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item"><div href="#" class="ag-courses-item_link"><div class="ag-courses-item_bg"></div><div class="ag-courses-item_title"><span class="adjustable-text"> Subscritos <br>1212</span></div></div></div></div></div></div>'
+        # tarjeta2 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item"><div href="#" class="ag-courses-item_link"><div class="ag-courses-item_bg"></div><div class="ag-courses-item_title"><span class="adjustable-text"> Dados de baja <br>{clientes_dejar_de_recibir}</span></div></div></div></div></div></div>'
+tarjeta3 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item"><div href="#" class="ag-courses-item_link"><div class="ag-courses-item_bg"></div><div class="ag-courses-item_title"><span class="adjustable-text"> Dejaron motivos <br>1212</span></div></div></div></div></div></div>'
+tarjeta4 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item"><div href="#" class="ag-courses-item_link"><div class="ag-courses-item_bg"></div><div class="ag-courses-item_title"><span class="adjustable-text"> No dejaron motivos <br>23123</span></div></div></div></div></div></div>'
+st.markdown(tarjeta1, unsafe_allow_html=True)
+st.markdown(tarjeta3, unsafe_allow_html=True)
+st.markdown(tarjeta4, unsafe_allow_html=True)
