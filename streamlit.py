@@ -956,6 +956,15 @@ custom_css = """
             }
         </style>
         """
-ola = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_2"><div class="ag-courses-item_link_core_3"><div class="ag-courses-item_title_core">Interesados en la oferta de la semana</div><img src="data:image/png;base64" alt="Gráfico de Pastel"></div></div></div></div>'
+# Usar la función st.markdown para insertar el CSS
+st.markdown(custom_css, unsafe_allow_html=True)
 
-st.markdown(ola, unsafe_allow_html=True)
+# Agregar elementos con clases definidas en el CSS
+st.markdown('<div class="ag-format-container">Contenido con formato</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_box">Cajas de cursos</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses_item">Elemento de curso</div>', unsafe_allow_html=True)
+
+# Puedes seguir agregando más elementos
+st.markdown('<div class="ag-courses_item">Otro elemento de curso</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_link">Enlace de curso</div>', unsafe_allow_html=True)
+st.markdown('<div class="ag-courses-item_date">Fecha de curso</div>', unsafe_allow_html=True)
