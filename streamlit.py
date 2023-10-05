@@ -956,4 +956,6 @@ custom_css = """
             }
         </style>
         """
-st.markdown(custom_css, unsafe_allow_html=True)
+ola = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_2"><div class="ag-courses-item_link_core_3"><div class="ag-courses-item_title_core">Interesados en la oferta de la semana</div><img src="data:image/png;base64,{imagen_codificada2}" alt="Gráfico de Pastel"></div></div></div></div>'
+
+st.markdown(ola, unsafe_allow_html=True)
