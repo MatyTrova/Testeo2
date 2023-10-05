@@ -983,7 +983,7 @@ st.markdown(tarjeta1, unsafe_allow_html=True)
 st.markdown(tarjeta3, unsafe_allow_html=True)
 st.markdown(tarjeta4, unsafe_allow_html=True)
 
-tarjeta_clientes_contactados_col1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_1"><div href="#" class="ag-courses-item_link_core"><div class="ag-courses-item_title_core"> Clientes Totales Contactados <br> {clientes_contactados}</div></div></div></div></div>'
-tarjeta_clientes_con_respuesta_col1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_1"><div href="#" class="ag-courses-item_link_core"><div class="ag-courses-item_title_core"> Clientes con respuesta <br> {clientes_que_respondieron}</div></div></div></div></div>'
+tarjeta_clientes_contactados_col1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_1"><div href="#" class="ag-courses-item_link_core"><div class="ag-courses-item_title_core"> Clientes Totales Contactados <br> 2222</div></div></div></div></div>'
+tarjeta_clientes_con_respuesta_col1 = f'<div class="ag-format-container"><div class="ag-courses_box"><div class="ag-courses_item_core_1"><div href="#" class="ag-courses-item_link_core"><div class="ag-courses-item_title_core"> Clientes con respuesta <br> 23232</div></div></div></div></div>'
 st.markdown(tarjeta_clientes_con_respuesta_col1, unsafe_allow_html=True)
 st.markdown(tarjeta_clientes_contactados_col1, unsafe_allow_html=True)
